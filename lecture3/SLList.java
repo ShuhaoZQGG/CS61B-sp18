@@ -11,13 +11,16 @@ public class SLList {
     }
 
     private IntNode first;
+    private int size;
 
     public SLList(int x) {
         first = new IntNode(x, null);
+        size = 1;
     }
 
     public void addFirst(int x) {
         first = new IntNode(x, first);
+        size +=1;
     }
 
     public int getFirst() {
@@ -31,6 +34,7 @@ public class SLList {
         }
 
         p.next = new IntNode(x, null);
+        size += 1;
     }
 
     public int getLast() {
@@ -40,18 +44,6 @@ public class SLList {
         }
 
         return p.item;
-    }
-
-    private static int size(IntNode p) {
-        if (p.next == null) {
-            return 1;
-        }
-
-        return 1 + size(p.next);
-    }
-
-    public int size() {
-        return size(first);
     }
 
     public static void main(String[] args) {
@@ -64,6 +56,6 @@ public class SLList {
         L.addLast(20);
         System.out.println(L.getFirst());
         System.out.println(L.getLast());
-        System.out.println(L.size());
+        System.out.println(L.size);
     }
 }
