@@ -10,25 +10,30 @@ public class SLList {
         }
     }
 
-    private IntNode first;
+    private IntNode sentinel;
     private int size;
 
+    public SLList() {
+        sentinel = new IntNode(0, null); // it doesn't matter what item equals to, sentinel only works as pointing to the next node
+        size = 0;
+    }
     public SLList(int x) {
-        first = new IntNode(x, null);
+        sentinel = new IntNode(0, null);
+        sentinel.next = new IntNode(x, null);
         size = 1;
     }
 
     public void addFirst(int x) {
-        first = new IntNode(x, first);
-        size +=1;
+        sentinel.next = new IntNode(x, sentinel.next);
+        size += 1;
     }
 
     public int getFirst() {
-        return first.item;
+        return sentinel.next.item;
     }
 
     public void addLast(int x) {
-        IntNode p = first;
+        IntNode p = sentinel;
         while (p.next != null) {
             p = p.next;
         }
@@ -38,7 +43,7 @@ public class SLList {
     }
 
     public int getLast() {
-        IntNode p = first;
+        IntNode p = sentinel;
         while(p.next != null) {
             p = p.next;
         }
