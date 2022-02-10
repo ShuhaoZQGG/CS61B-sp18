@@ -1,5 +1,15 @@
 /** An SLList is a list of the integers, which hides the terrible truth of the nakedness within*/
 public class SLList {
+    private static class IntNode {
+        public int item;
+        public IntNode next;
+
+        public IntNode(int i, IntNode n) {
+            item = i;
+            next = n;
+        }
+    }
+
     private IntNode first;
 
     public SLList(int x) {
