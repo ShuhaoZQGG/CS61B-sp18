@@ -68,16 +68,54 @@ public class InList {
         }
         return rest.get(i - 1);
     }
-    public static void main(String[] args) {
-        InList L = new InList(15, null);
-        L = new InList(10, L);
-        L = new InList(5, L);
 
-        System.out.println("My Recursive Answer " + L.getSize(L));
-        System.out.println("Professors Recursive Answer " + L.size());
-        System.out.println("My Iterative Answer " + L.iterGetSize(L));
-        System.out.println("Professors Iterative Answer " + L.iterativeSize());
-        System.out.println("My Get Answer " + L.get(1));
-        System.out.println("Professor Recursive Get Answer " + L.recGet(1));
+    public void addAdjacent(InList L) {
+        if (L.rest == null) {
+            return;
+        }
+
+        while (L.rest != null) {
+            if (L.first == L.rest.first) {
+                L.first *= 2;
+                L.rest = L.rest.rest;
+            } else {
+                L = L.rest;
+            }
+        }
+    }
+
+    public void display(InList L) {
+        while (L.rest != null) {
+            System.out.print(L.first);
+            System.out.print(", ");
+            L.first = L.rest.first;
+            L.rest = L.rest.rest;
+        }
+        System.out.println(L.first);
+    }
+
+    public static void main(String[] args) {
+//        InList L = new InList(15, null);
+//        L = new InList(10, L);
+//        L = new InList(5, L);
+//
+//        System.out.println("My Recursive Answer " + L.getSize(L));
+//        System.out.println("Professors Recursive Answer " + L.size());
+//        System.out.println("My Iterative Answer " + L.iterGetSize(L));
+//        System.out.println("Professors Iterative Answer " + L.iterativeSize());
+//        System.out.println("My Get Answer " + L.get(1));
+//        System.out.println("Professor Recursive Get Answer " + L.recGet(1));
+
+        System.out.println("hello world");
+
+        InList M = new InList(3, null);
+        M = new InList(2, M);
+        M = new InList(1, M);
+        M = new InList(1, M);
+        M.addAdjacent(M);
+        System.out.println("hello world");
+        System.out.println("M size " + M.size());
+        System.out.println("M recGet " + M.recGet(1));
+        M.display(M);
     }
 }
