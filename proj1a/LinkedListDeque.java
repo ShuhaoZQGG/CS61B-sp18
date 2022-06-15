@@ -52,7 +52,7 @@ public class LinkedListDeque<T> {
 
     public void printDeque() {
         Node node = front;
-        while(node.next != null && node.next.item != null) {
+        while (node.next != null && node.next.item != null) {
             System.out.print(node.next.item + " ");
             node = node.next;
         }
@@ -64,14 +64,13 @@ public class LinkedListDeque<T> {
     }
 
     public boolean isEmpty() {
-        if (size == 0) {
-            return true;
-        }
-
-        return false;
+        return size == 0;
     }
 
     public T removeFirst() {
+        if (size == 0) {
+            return null;
+        }
         T removed = (T) front.next.item;
         front.next = front.next.next;
         front.next.prev = front;
@@ -80,6 +79,9 @@ public class LinkedListDeque<T> {
     }
 
     public T removeLast() {
+        if (size == 0) {
+            return null;
+        }
         T removed = (T) rear.prev.item;
         rear.prev = rear.prev.prev;
         rear.prev.next = rear;
@@ -88,20 +90,20 @@ public class LinkedListDeque<T> {
     }
 
     public T get(int index) {
-        Node Front = front;
+        Node node = front;
         if (index > size) {
             return null;
         }
 
         while (index > 0) {
             index -= 1;
-            Front = Front.next;
+            node = node.next;
         }
 
-        return (T) Front.item;
+        return (T) node.item;
     }
 
-    public T getRecursiveHelper(int index, Node node) {
+    private T getRecursiveHelper(int index, Node node) {
         if (index > size) {
             return null;
         }
@@ -118,25 +120,41 @@ public class LinkedListDeque<T> {
     public T getRecursive(int index) {
         return getRecursiveHelper(index, front);
     }
-//    public static void main(String[] args) {
-//        LinkedListDeque deque = new LinkedListDeque<String>();
-//        deque.addFirst("hello");
-//        deque.addLast("what");
-//        deque.addLast("a");
-//        deque.addLast("beautiful");
-//        deque.addLast("World");
-//        deque.addLast("!");
-//        deque.addFirst("yo");
-//        deque.addFirst("said");
-//        deque.addFirst("i");
-//        deque.addFirst("and");
-//        deque.addFirst("you");
-//        deque.removeFirst();
-//        deque.removeLast();
-//        deque.removeLast();
-//        deque.printDeque();
-//        System.out.println(deque.size());
-//        System.out.println(deque.get(3));
-//        System.out.println(deque.getRecursive(3));
-//    }
+
+    public static void main(String[] args) {
+        LinkedListDeque deque = new LinkedListDeque<String>();
+        deque.addFirst("hello");
+        deque.addLast("what");
+        deque.addLast("a");
+        deque.addLast("beautiful");
+        deque.addLast("World");
+        deque.addLast("!");
+        deque.addFirst("yo");
+        deque.addFirst("said");
+        deque.addFirst("i");
+        deque.addFirst("and");
+        deque.addFirst("you");
+        deque.removeFirst();
+        deque.removeFirst();
+        deque.removeLast();
+        deque.removeLast();
+        deque.removeLast();
+        deque.removeLast();
+        deque.removeLast();
+        deque.removeLast();
+        deque.removeLast();
+        deque.removeLast();
+        deque.removeFirst();
+        deque.addFirst("hi");
+        deque.removeFirst();
+        deque.addFirst("hi");
+        deque.removeFirst();
+        deque.addFirst("hi");
+        deque.removeFirst();
+        System.out.println(deque.isEmpty());
+        deque.printDeque();
+        System.out.println(deque.size());
+        System.out.println(deque.get(3));
+        System.out.println(deque.getRecursive(3));
+    }
 }

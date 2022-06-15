@@ -132,6 +132,7 @@
 //        deque.printDeque();
 //    }
 //}
+
 /*
    Code refer to https://github.com/seriouszyx/CS61BCN
  */
@@ -154,20 +155,20 @@ public class ArrayDeque<T> {
     }
 
     public boolean isEmpty() {
-        return (size == 0 ? true : false);
+        return size == 0;
     }
 
-    public int minusOne(int index) {
-        return Math.floorMod(index-1, items.length);
+    private int minusOne(int index) {
+        return Math.floorMod(index - 1, items.length);
     }
 
 
-    public int plusOne(int index) {
-        return Math.floorMod(index+1, items.length);
+    private int plusOne(int index) {
+        return Math.floorMod(index + 1, items.length);
     }
 
-    public int plusOne(int index, int length) {
-        return Math.floorMod(index+1, length);
+    private int plusOne(int index, int length) {
+        return Math.floorMod(index + 1, length);
     }
 
     /**
@@ -201,7 +202,7 @@ public class ArrayDeque<T> {
         items = (T[]) new Object[capacity];
         nextFirst = 0;
         nextLast = 1;
-        for (int i=begin; i != end; i = plusOne(i, temp.length)) {
+        for (int i = begin; i != end; i = plusOne(i, temp.length)) {
             items[nextLast] = temp[i];
             nextLast = plusOne(nextLast);
         }
@@ -223,7 +224,7 @@ public class ArrayDeque<T> {
         size++;
     }
 
-    public T getFirst() {
+    private T getFirst() {
         return items[plusOne(nextFirst)];
     }
 
@@ -243,7 +244,7 @@ public class ArrayDeque<T> {
         size++;
     }
 
-    public T getLast() {
+    private T getLast() {
         return items[minusOne(nextLast)];
     }
 
